@@ -9,6 +9,9 @@
                              <item name="free-shipping-banner" xsi:type="array">
                                  <item name="component" xsi:type="string">A7Prime_FreeShippingPromo/js/free-shipping-banner</item>
                              </item>
+                             <item name="config" xsi:type="array">
+                                <item name="message" xsi:type="string">Free Shipping Message</item>
+                             </item>
                          </item>
                      </argument>
                  </arguments>

@@ -1,19 +1,32 @@
 define([
-    'uiComponent'
+    'uiComponent',
+    'Magento_Customer/js/customer-data',
 ], function(
-    Component
+    Component,
+    customerData
 ) {
     'use strict';
 
     return Component.extend({
         defaults: {
-            message: 'Free Shipping Message!',
-            template: 'A7Prime_FreeShippingPromo/free-shipping-banner'
+            subtotal: 0.00,
+            template: 'A7Prime_FreeShippingPromo/free-shipping-banner',
+            tracks: {
+                subtotal: true
+            }
         },
         initialize: function() {
             this._super();
 
-            console.log(this.message);
+            var self = this;
+            var cart = customerData.get('cart');
+
+            customerData.getInitCustomerData().done(function(){
+                self.subtotal = parseFloat(cart().subtotalAmount);
+            });
+        },
+        formatCurrency: function(value){
+            return '$' + value().toFixed(2);
         }
     });
 });
