@@ -40,7 +40,7 @@ define([
 
             self.message = ko.computed(function() {
                 if (_.isUndefined(self.subtotal) || self.subtotal === 0) {
-                    return self.messageDefault;
+                    return self.messageDefault.replace('{{freeShippingThreshold}}', self.freeShippingThreshold);
                 }
 
                 if (self.subtotal > 0 && self.subtotal < self.freeShippingThreshold) {
@@ -55,7 +55,7 @@ define([
             });
         },
         formatCurrency: function(value){
-            return '$' + value().toFixed(2);
+            return '$' + value.toFixed(2);
         }
     });
 });
